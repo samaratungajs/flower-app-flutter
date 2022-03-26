@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemList extends StatelessWidget {
+  ItemList(this.keyword);
+
+  final String? keyword;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Database.readItems(),
+      stream:Database.readItems(keyword),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text("Something went wrong");
@@ -32,21 +36,22 @@ class ItemList extends StatelessWidget {
                 child: ListTile(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0)),
-                  onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditScreen(
-                    currentTitle:title,
-                    currrentDescription: description,
-                    documentId:docId,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditScreen(
+                        currentTitle: title,
+                        currrentDescription: description,
+                        documentId: docId,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-                  
                   title: Text(
                     title,
                     maxLines: 1,
                     style: TextStyle(fontSize: 20),
                     overflow: TextOverflow.ellipsis,
                   ),
-                    subtitle: Text(
+                  subtitle: Text(
                     description,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

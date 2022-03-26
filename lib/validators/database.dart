@@ -38,25 +38,30 @@ class Database {
       "title": title,
       "description": description,
     };
-    print(userId! + "And" +docId);
+    print(userId! + "And" + docId);
     await documentReference
         .set(data)
         .whenComplete(() => print("Note item updated to the database"))
         .catchError((e) => print(e));
   }
 
-
-
-
   /////Read Data
-  static Stream<QuerySnapshot> readItems() {
-    CollectionReference notesItemscollection =
-        _mainCollection.doc(userId).collection('items');
-    return notesItemscollection.snapshots();
+  static Stream<QuerySnapshot> readItems(String? keyword) {
+    if (keyword != "" && keyword != null) {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('items');
+      return notesItemscollection
+          .where("title", isGreaterThanOrEqualTo:keyword)
+          .where("title", isLessThanOrEqualTo:keyword + 'z')
+          .snapshots();
+    }
+    else{
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('items');
+      return notesItemscollection
+          .snapshots();
+    }
   }
-
-
-
 
   /////Delete Item
   static Future<void> deleteItem({
