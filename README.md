@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference. -->
 
 # Flutter CRUD App
 
-A new Flutter project using null value safty.
+## A new Flutter project using null value safty.
 
     - Create the database on firebase filestore
     - Add the google-services json file into the android/app folder

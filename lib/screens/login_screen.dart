@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return GestureDetector(
         onTap: ()=> _uidFocusNode.unfocus(),
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 233, 233, 233),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
           body: SafeArea(
             child: Stack(
               children: [
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Flexible(
                               flex: 1,
                               child: Image.asset(
-                                'assets/flowerLogo.png',
+                                'assets/robot.png',
                                 height: 160,
                               )),
                           const SizedBox(
@@ -53,8 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Text(
                             'Flutter',
                             style: TextStyle(
-                              color: Colors.greenAccent,
+                              color: Color.fromARGB(255, 0, 219, 114),
                               fontSize: 40,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const Text(
@@ -62,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                               color: Colors.orange,
                               fontSize: 40,
+                              fontWeight: FontWeight.bold,
                             ),
                           )
                         ],

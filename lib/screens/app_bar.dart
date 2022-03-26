@@ -11,7 +11,7 @@ class AppBarTitle extends StatelessWidget{
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(
-          'assets/flowerLogo.png',
+          'assets/robot.png',
           height: 20,
         ),
         const SizedBox(width: 8),
