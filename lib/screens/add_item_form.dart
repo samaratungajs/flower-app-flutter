@@ -43,15 +43,14 @@ class _AddItemFormmState extends State<AddItemFormm> {
 
   Future getImage() async {
     pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
- 
-     setState(() {
+
+    setState(() {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
       } else {
         print('No image selected.');
       }
     });
-
   }
 
   @override
@@ -80,11 +79,11 @@ class _AddItemFormmState extends State<AddItemFormm> {
                             borderRadius: BorderRadius.circular(20),
                             child: SizedBox.fromSize(
                                 size: Size.fromRadius(88), // Image radius
-                                child:_image == null? Image.network(
-                                    "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
-                                    fit: BoxFit.cover):
-                                    Image.file(_image!)
-                                    ),
+                                child: _image == null
+                                    ? Image.network(
+                                        "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
+                                        fit: BoxFit.cover)
+                                    : Image.file(_image!)),
                           ),
                         )),
                     Padding(
@@ -187,10 +186,13 @@ class _AddItemFormmState extends State<AddItemFormm> {
 
                             print(imageURL);
                             await Database.addItem(
-                                title: getTitle, description: getDescription, imageURL: imageURL);
+                                title: getTitle,
+                                description: getDescription,
+                                imageURL: imageURL);
 
                             setState(() {
                               _isProcessing = false;
+                              pickedImage = null;
                             });
                             Navigator.of(context).pop();
                           }

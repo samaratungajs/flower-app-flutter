@@ -37,14 +37,12 @@ class _AdminHomeState extends State<AdminHome> {
           ),
         ),
         body: Scaffold(
-          body: SafeArea(
+          body: Container(
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 5),
               child: ItemList(name),
             ),
           ),
-        )
-        );
-
+        ));
   }
 }
