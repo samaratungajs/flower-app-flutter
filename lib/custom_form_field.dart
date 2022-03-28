@@ -37,7 +37,7 @@ class CustomFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: Colors.grey),
+      style: TextStyle(color: Color.fromARGB(255, 34, 34, 34), fontWeight: FontWeight.w600),
       initialValue: _initialValue,
       maxLines: maxLines,
       keyboardType: _keyboardType,
@@ -45,7 +45,7 @@ class CustomFormField extends StatelessWidget {
       textCapitalization:
           isCapitalized ? TextCapitalization.words : TextCapitalization.none,
       textInputAction: _inputAction,
-      cursorColor: Colors.blue,
+      cursorColor: Color.fromARGB(206, 11, 179, 137),
       validator: (value) => _validator(value!),
       decoration: InputDecoration(
         labelText: isLabelEnabled ? _label : null,

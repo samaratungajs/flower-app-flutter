@@ -37,7 +37,7 @@ class _EditScreenState extends State<EditScreen> {
           toolbarHeight: 150,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
-            sectionName: "Add Item",
+            sectionName: "Update Category",
           ),
           actions: [
             _isDeleting
