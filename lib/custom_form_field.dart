@@ -51,7 +51,7 @@ class CustomFormField extends StatelessWidget {
         labelText: isLabelEnabled ? _label : null,
         labelStyle: TextStyle(color: Color.fromARGB(206, 11, 179, 137)),
         hintText: _hint,
-        hintStyle: TextStyle(color: Color.fromARGB(206, 77, 77, 77)),
+        hintStyle: TextStyle(color: Color.fromARGB(206, 145, 145, 145)),
         errorStyle: TextStyle(
           color: Colors.redAccent,
           fontWeight: FontWeight.bold,

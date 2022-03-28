@@ -33,6 +33,11 @@ class _EditScreenState extends State<EditScreen> {
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
           elevation: 2,
           toolbarHeight: 150,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
@@ -43,8 +48,8 @@ class _EditScreenState extends State<EditScreen> {
             _isDeleting
                 ? SizedBox(
                     child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 6, 212, 178)),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Color.fromARGB(255, 6, 212, 178)),
                       strokeWidth: 3,
                     ),
                     height: 1,
@@ -66,25 +71,19 @@ class _EditScreenState extends State<EditScreen> {
                       Icons.delete_sharp,
                       color: Colors.redAccent,
                       size: 32,
-                    )
-                    )
+                    ))
           ],
         ),
-
-        body: SafeArea(child: Padding(padding: const EdgeInsets.only(
-          left: 16.0,
-          right: 16.0,
-          bottom: 20.0
-        ),
-        child: EditItemForm(
-          documentId: widget.documentId,
-          titleFocusNode: _titleFocusNode,
-          descriptionFocusNode: _descriptionFocusNode,
-          currentTitle:widget.currentTitle,
-          currentDescription : widget.currrentDescription
-        ),
-        )
-        ),
+        body: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0),
+          child: EditItemForm(
+              documentId: widget.documentId,
+              titleFocusNode: _titleFocusNode,
+              descriptionFocusNode: _descriptionFocusNode,
+              currentTitle: widget.currentTitle,
+              currentDescription: widget.currrentDescription),
+        )),
       ),
     );
   }

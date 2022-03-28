@@ -2,6 +2,9 @@ import 'package:crud_app/custom_form_field.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddItemFormm extends StatefulWidget {
   final FocusNode titleFocusNode;
@@ -26,9 +29,10 @@ class _AddItemFormmState extends State<AddItemFormm> {
 
   String getTitle = "";
   String getDescription = "";
-
+  
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Form(
           key: _addItemFormKey,
@@ -42,10 +46,39 @@ class _AddItemFormmState extends State<AddItemFormm> {
                     const SizedBox(
                       height: 24.0,
                     ),
+                    Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          padding: EdgeInsets.all(6), // Border width
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 29, 177, 152),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SizedBox.fromSize(
+                              size: Size.fromRadius(88), // Image radius
+                              child: Image.network(
+                                  "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
+                                  fit: BoxFit.cover)
+                            ),
+                          ),
+                        )),
+                    Padding(
+                      padding: EdgeInsets.only(top: 60.0),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.camera_alt_sharp,
+                          size: 35,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                        },
+                      ),
+                    ),
                     const Text(
                       'Title',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 40, 67, 88),
+                          color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -67,14 +100,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                             value: value,
                           );
                           getTitle = value;
-    
-    
                         }),
                     const SizedBox(height: 24.0),
                     const Text(
-                      'Title',
+                      'Description',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 40, 67, 88),
+                          color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -92,15 +123,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                         inputAction: TextInputAction.next,
                         label: "Description",
                         hint: "Write your Description",
-                       validator: (value) {
+                        validator: (value) {
                           Validator.validateField(
                             value: value,
                           );
                           getDescription = value;
-    
-                          
-                        }
-                        ),
+                        }),
                   ],
                 ),
               ),
@@ -109,7 +137,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                       padding: const EdgeInsets.all(16.0),
                       child: CircularProgressIndicator(
                         valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                            AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 29, 177, 152)),
                       ),
                     )
                   : Container(
@@ -117,22 +145,21 @@ class _AddItemFormmState extends State<AddItemFormm> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.orangeAccent),
+                                MaterialStateProperty.all(Color.fromARGB(255, 14, 204, 172)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)))),
+                                    borderRadius: BorderRadius.circular(30)))),
                         onPressed: () async {
                           widget.titleFocusNode.unfocus();
                           widget.descriptionFocusNode.unfocus();
-    
+
                           if (_addItemFormKey.currentState!.validate()) {
                             setState(() {
                               _isProcessing = true;
                             });
                             await Database.addItem(
-                                title: getTitle,
-                                description: getDescription);
-    
+                                title: getTitle, description: getDescription);
+
                             setState(() {
                               _isProcessing = false;
                             });
@@ -144,9 +171,9 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           child: Text(
                             'Add Data',
                             style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blueGrey,
+                                color: Colors.white,
                                 letterSpacing: 2),
                           ),
                         ),
@@ -156,4 +183,8 @@ class _AddItemFormmState extends State<AddItemFormm> {
           )),
     );
   }
+}
+
+class File {
+  File(String path);
 }
