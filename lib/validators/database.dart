@@ -10,6 +10,7 @@ class Database {
   static Future<void> addItem({
     required String title,
     required String description,
+    required String imageURL,
   }) async {
     DocumentReference documentReference =
         _mainCollection.doc(userId).collection("items").doc();
@@ -17,6 +18,7 @@ class Database {
     Map<String, dynamic> data = <String, dynamic>{
       "title": title,
       "description": description,
+      "imageURL": imageURL,
     };
 
     await documentReference

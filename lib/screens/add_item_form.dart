@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:crud_app/custom_form_field.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
@@ -29,10 +30,32 @@ class _AddItemFormmState extends State<AddItemFormm> {
 
   String getTitle = "";
   String getDescription = "";
-  
+  static String imageURL = "";
+
+  static var pickedImage;
+  File? _image;
+
+  //upload image
+  final picker = ImagePicker();
+  Reference ref = FirebaseStorage.instance
+      .ref()
+      .child("category" + DateTime.now().toString());
+
+  Future getImage() async {
+    pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+ 
+     setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Form(
           key: _addItemFormKey,
@@ -56,11 +79,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: SizedBox.fromSize(
-                              size: Size.fromRadius(88), // Image radius
-                              child: Image.network(
-                                  "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
-                                  fit: BoxFit.cover)
-                            ),
+                                size: Size.fromRadius(88), // Image radius
+                                child:_image == null? Image.network(
+                                    "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
+                                    fit: BoxFit.cover):
+                                    Image.file(_image!)
+                                    ),
                           ),
                         )),
                     Padding(
@@ -72,6 +96,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           color: Colors.grey,
                         ),
                         onPressed: () {
+                          getImage();
                         },
                       ),
                     ),
@@ -136,16 +161,16 @@ class _AddItemFormmState extends State<AddItemFormm> {
                   ? Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 29, 177, 152)),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Color.fromARGB(255, 29, 177, 152)),
                       ),
                     )
                   : Container(
                       width: double.maxFinite,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Color.fromARGB(255, 14, 204, 172)),
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 14, 204, 172)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)))),
@@ -157,8 +182,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                             setState(() {
                               _isProcessing = true;
                             });
+                            await ref.putFile(File(pickedImage!.path));
+                            imageURL = await ref.getDownloadURL();
+
+                            print(imageURL);
                             await Database.addItem(
-                                title: getTitle, description: getDescription);
+                                title: getTitle, description: getDescription, imageURL: imageURL);
 
                             setState(() {
                               _isProcessing = false;
@@ -183,8 +212,4 @@ class _AddItemFormmState extends State<AddItemFormm> {
           )),
     );
   }
-}
-
-class File {
-  File(String path);
 }
