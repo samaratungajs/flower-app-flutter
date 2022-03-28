@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crud_app/screens/admin_home.dart';
 import 'package:crud_app/screens/home.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
@@ -49,15 +50,15 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 0.0, right: 0.0),
+              padding: EdgeInsets.only(left: 5.0, right: 5.0),
               child: Container(
                 width: double.maxFinite,
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.orangeAccent),
+                        MaterialStateProperty.all(Color.fromARGB(255, 29, 177, 152)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(30),
                     )),
                   ),
                   onPressed: () {
@@ -68,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => AdminHome(),
                         ),
                       );
                     }
@@ -78,9 +79,9 @@ class _LoginFormState extends State<LoginForm> {
                     child: Text(
                       'Login',
                       style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 21,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           letterSpacing: 2),
                     ),
                   ),

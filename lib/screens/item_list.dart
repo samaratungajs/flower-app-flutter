@@ -18,7 +18,7 @@ class ItemList extends StatelessWidget {
           return Text("Something went wrong");
         } else if (snapshot.hasData || snapshot.data != null) {
           return ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(height: 16.0),
+            separatorBuilder: (context, index) => SizedBox(height: 25.0),
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
               var noteInfo =
@@ -30,12 +30,12 @@ class ItemList extends StatelessWidget {
 
               return Ink(
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(8.0),
+                  color: Color.fromARGB(255, 96, 139, 126),
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: ListTile(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)),
+                      borderRadius: BorderRadius.circular(15.0)),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => EditScreen(

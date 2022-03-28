@@ -31,23 +31,23 @@ class _EditScreenState extends State<EditScreen> {
         _descriptionFocusNode.unfocus();
       },
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 45, 74, 88),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.blueGrey,
+          elevation: 2,
+          toolbarHeight: 150,
+          backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
-            sectionName: "Add Ittem",
+            sectionName: "Add Item",
           ),
           actions: [
             _isDeleting
-                ? Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, bottom: 10.0, right: 16.0),
+                ? SizedBox(
                     child: CircularProgressIndicator(
                       valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                          AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 6, 212, 178)),
                       strokeWidth: 3,
                     ),
+                    height: 1,
                   )
                 : IconButton(
                     onPressed: () async {
@@ -63,10 +63,11 @@ class _EditScreenState extends State<EditScreen> {
                       Navigator.of(context).pop();
                     },
                     icon: Icon(
-                      Icons.delete_forever,
+                      Icons.delete_sharp,
                       color: Colors.redAccent,
                       size: 32,
-                    ))
+                    )
+                    )
           ],
         ),
 

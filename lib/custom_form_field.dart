@@ -49,29 +49,29 @@ class CustomFormField extends StatelessWidget {
       validator: (value) => _validator(value!),
       decoration: InputDecoration(
         labelText: isLabelEnabled ? _label : null,
-        labelStyle: TextStyle(color: Colors.pink),
+        labelStyle: TextStyle(color: Color.fromARGB(206, 11, 179, 137)),
         hintText: _hint,
-        hintStyle: TextStyle(color: Colors.amber),
+        hintStyle: TextStyle(color: Color.fromARGB(206, 77, 77, 77)),
         errorStyle: TextStyle(
           color: Colors.redAccent,
           fontWeight: FontWeight.bold,
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: Colors.green, width: 2)),
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: BorderSide(color: Color.fromARGB(255, 29, 177, 152), width: 2)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(35.0),
           borderSide: BorderSide(color: Colors.blueGrey),
         ),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide:
-                BorderSide(color: Color.fromARGB(255, 211, 1, 1), width: 2)),
+                BorderSide(color: Color.fromARGB(255, 223, 4, 4), width: 2)),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide:
               BorderSide(
-                color: Color.fromARGB(255, 255, 8, 243), width: 2
+                color: Color.fromARGB(255, 240, 0, 12), width: 2
                 ),
         ),
       ),

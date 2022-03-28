@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               flex: 1,
                               child: Image.asset(
                                 'assets/robot.png',
-                                height: 160,
+                                height: 140,
                               )),
                           const SizedBox(
                             height: 20,

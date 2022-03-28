@@ -10,19 +10,16 @@ class AppBarTitle extends StatelessWidget{
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          'assets/robot.png',
-          height: 20,
-        ),
+        // Image.asset(
+        //   'assets/whitelogo.png',
+        //   height: 10,
+        // ),
         const SizedBox(width: 8),
-        const Text(
-          'Flutter',
-          style: TextStyle(color: Color.fromARGB(255, 255, 177, 10), fontSize: 19),
-        ),
-        Text(
-          sectionName,
-          style: const TextStyle(color: Color.fromARGB(255, 158, 223, 255), fontSize: 18),
-        ),
+          Text(
+                'Add Category',
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.bold),
+              ),
       ],
     );
   }

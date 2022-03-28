@@ -52,7 +52,7 @@ class _EditItemFormState extends State<EditItemForm> {
                     const Text(
                       'Title',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 149, 193, 228),
+                          color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -79,7 +79,7 @@ class _EditItemFormState extends State<EditItemForm> {
                     const Text(
                       'Description',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 149, 193, 228),
+                          color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
@@ -111,7 +111,7 @@ class _EditItemFormState extends State<EditItemForm> {
                       padding: const EdgeInsets.all(16.0),
                       child: CircularProgressIndicator(
                         valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                            AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 29, 177, 152)),
                       ),
                     )
                   : Container(
@@ -119,10 +119,10 @@ class _EditItemFormState extends State<EditItemForm> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.orangeAccent),
+                                MaterialStateProperty.all(Color.fromARGB(255, 14, 204, 172)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)))),
+                                    borderRadius: BorderRadius.circular(30)))),
                         onPressed: () async {
                           widget.titleFocusNode.unfocus();
                           widget.descriptionFocusNode.unfocus();
@@ -147,9 +147,9 @@ class _EditItemFormState extends State<EditItemForm> {
                           child: Text(
                             'Update Data',
                             style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blueGrey,
+                                color: Colors.white,
                                 letterSpacing: 2),
                           ),
                         ),
