@@ -3,6 +3,8 @@ import 'package:crud_app/screens/app_bar.dart';
 import 'package:crud_app/screens/item_list.dart';
 import 'package:flutter/material.dart';
 
+import 'admin_header_with_search.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -63,10 +65,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
-          child: ItemList(name),
-        ),
+        child: Column(
+          children: [
+            AdminHeader(),
+          //   Padding(
+          //  padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
+          //  child: ItemList(name),
+        //  ),
+          ],
+        )
+        // child: Padding(
+        //   padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
+        //   child: ItemList(name),
+        // ),
       ),
     );
   }

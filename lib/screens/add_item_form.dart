@@ -68,26 +68,27 @@ class _AddItemFormmState extends State<AddItemFormm> {
                     const SizedBox(
                       height: 24.0,
                     ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          padding: EdgeInsets.all(6), // Border width
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 29, 177, 152),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: SizedBox.fromSize(
-                                size: Size.fromRadius(88), // Image radius
-                                child: _image == null
-                                    ? Image.network(
-                                        "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
-                                        fit: BoxFit.cover)
-                                    : Image.file(_image!)),
-                          ),
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 60.0),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(6), // Border width
+                      // decoration: BoxDecoration(
+                      //     color: Color.fromARGB(255, 29, 177, 152),
+                      //     borderRadius: BorderRadius.circular(20)),
+                      child:Column(
+                        //crossAxisAlignment: center,
+                        children:[
+                        ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: SizedBox.fromSize(
+                            size: Size.fromRadius(88), // Image radius
+                            child: _image == null
+                                ? Image.network(
+                                    "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
+                                    fit: BoxFit.cover)
+                                : Image.file(_image!)),
+                      ),
+                      Padding(
+                      padding: EdgeInsets.only(top: 10.0),
                       child: IconButton(
                         icon: Icon(
                           Icons.camera_alt_sharp,
@@ -99,6 +100,10 @@ class _AddItemFormmState extends State<AddItemFormm> {
                         },
                       ),
                     ),
+                      ]
+                      ), 
+                    ),
+                    
                     const Text(
                       'Title',
                       style: TextStyle(
