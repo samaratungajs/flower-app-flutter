@@ -41,14 +41,15 @@ class _AddItemFormmState extends State<AddItemFormm> {
       .ref()
       .child("category" + DateTime.now().toString());
 
-  Future getImage() async {
+  Future getImage(BuildContext context) async {
     pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Image Uploaded")));
       } else {
-        print('No image selected.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No Image Uploaded")));
       }
     });
   }
@@ -96,7 +97,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           color: Colors.grey,
                         ),
                         onPressed: () {
-                          getImage();
+                          getImage(context);
                         },
                       ),
                     ),
@@ -186,11 +187,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                             setState(() {
                               _isProcessing = true;
                             });
-                            await ref.putFile(File(pickedImage!.path));
+
+                            
+                               await ref.putFile(File(pickedImage!.path));
                             imageURL = await ref.getDownloadURL();
 
-                            print(imageURL);
-                            await Database.addItem(
+                              await Database.addItem(
                                 title: getTitle,
                                 description: getDescription,
                                 imageURL: imageURL);
@@ -200,6 +202,8 @@ class _AddItemFormmState extends State<AddItemFormm> {
                               pickedImage = null;
                             });
                             Navigator.of(context).pop();
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Form is submitted")));
+                           
                           }
                         },
                         child: Padding(

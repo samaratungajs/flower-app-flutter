@@ -41,8 +41,8 @@ class _LoginFormState extends State<LoginForm> {
                       label: "Unique user ID",
                       hint: "Enter your unique identifier",
                       validator: (value) {
-                        Validator.validateField(
-                          value: value,
+                        Validator.validateUserId(
+                          uid: value,
                         );
                         getUserId = value;
                       })
