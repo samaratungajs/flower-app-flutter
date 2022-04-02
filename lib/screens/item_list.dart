@@ -39,9 +39,12 @@ class ItemList extends StatelessWidget {
                 String docId = snapshot.data!.docs[index].id;
                 String title = noteInfo["title"];
                 String description = noteInfo["description"];
+                String origin = noteInfo["origin"];
+                String imageURL = noteInfo["imageURL"];
                 return Ink(
                   child: Card(
-                    elevation: 7,
+                    margin: EdgeInsets.only(bottom: 30.0),
+                    elevation: 15,
                     clipBehavior: Clip.antiAlias,
                     child: Column(
                       children: [
@@ -52,15 +55,24 @@ class ItemList extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
-                          // subtitle: Text(
-                          //   'Secondary Text',
-                          //   style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                          // ),
+                          subtitle: Row(
+                            children: [
+                              Text(
+                              "Origins: ",
+                              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black.withOpacity(0.6)),
+                            ),
+                            Text(
+                              origin,
+                              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                            ),
+                            ], 
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.only(left:16.0, right: 16.0,),
                           child: Text(
                             description,
+                            maxLines: 4,
                             style:
                                 TextStyle(color: Colors.black.withOpacity(0.6)),
                           ),
@@ -68,29 +80,58 @@ class ItemList extends StatelessWidget {
                         ButtonBar(
                           alignment: MainAxisAlignment.start,
                           children: [
-                            TextButton(
-                              style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Color.fromARGB(255, 255, 202, 55)),
-                              ),
-                              onPressed: () => Navigator.of(context).push(
+                           ElevatedButton(
+                             style: ElevatedButton.styleFrom(
+                               primary: Colors.amber,
+                               shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                             ), 
+                             ),
+                             onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => EditScreen(
                                     currentTitle: title,
                                     currrentDescription: description,
+                                    currrentImageURL: imageURL,
+                                    currrentOrigin: origin,
                                     documentId: docId,
                                   ),
                                 ),
+                             ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('Update'), // <-- Text
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Icon( // <-- Icon
+                                    Icons.edit,
+                                    size: 16.0,
+                                  ),
+                                ],
                               ),
-                              child: Text('Edit'),
                             ),
-                            TextButton(
-                              style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Color.fromARGB(255, 243, 33, 33)),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                               primary: Colors.redAccent,
+                               shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                             )),
+                             child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('Delete'), // <-- Text
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Icon( // <-- Icon
+                                    Icons.delete,
+                                    size: 16.0,
+                                  ),
+                                ],
                               ),
+                             
                               onPressed: ()=>
                               showDialog(
                           context: context,
@@ -127,9 +168,7 @@ class ItemList extends StatelessWidget {
                                     child: const Text('No'))
                               ],
                             );
-                              })
-                              ,
-                              child: Text('Delete'),
+                              }),
                             )
                           ],
                         ),

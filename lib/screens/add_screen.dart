@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class AddScreen extends StatelessWidget {
   final FocusNode _titleFocusNode = FocusNode();
   final FocusNode _descriptionFocusNode = FocusNode();
+  final FocusNode _originFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class AddScreen extends StatelessWidget {
       onTap: () {
         _titleFocusNode.unfocus();
         _descriptionFocusNode.unfocus();
+        _originFocusNode.unfocus();
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -22,10 +24,11 @@ class AddScreen extends StatelessWidget {
               bottom: Radius.circular(30),
             ),
           ),
-          toolbarHeight: 150,
+          toolbarHeight: 80,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
             sectionName: "Add Category",
+            
           ),
         ),
         body: SafeArea(
@@ -33,7 +36,9 @@ class AddScreen extends StatelessWidget {
           padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20),
           child: AddItemFormm(
               titleFocusNode: _titleFocusNode,
-              descriptionFocusNode: _descriptionFocusNode),
+              descriptionFocusNode: _descriptionFocusNode,
+              originFocusNode:_originFocusNode
+              ),
         )),
       ),
     );

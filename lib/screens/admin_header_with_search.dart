@@ -13,11 +13,11 @@ class _AdminHeaderState extends State<AdminHeader> {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(bottom: 15),
-      height: size.height * 0.25,
+      height: size.height * 0.15,
       child: Stack(
         children: <Widget>[
           Container(
-            height: size.height * 0.25 - 27,
+            height: size.height * 0.15 - 27,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 29, 177, 152),
                 borderRadius: BorderRadius.only(

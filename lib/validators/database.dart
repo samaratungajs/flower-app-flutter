@@ -10,6 +10,7 @@ class Database {
   static Future<void> addItem({
     required String title,
     required String description,
+    required String origin,
     required String imageURL,
   }) async {
     DocumentReference documentReference =
@@ -19,6 +20,7 @@ class Database {
       "title": title,
       "description": description,
       "imageURL": imageURL,
+      "origin": origin,
     };
 
     await documentReference
@@ -31,7 +33,9 @@ class Database {
   static Future<void> updatedItem({
     required String title,
     required String description,
+    required String imageURL,
     required String docId,
+    required String origin,
   }) async {
     DocumentReference documentReference =
         _mainCollection.doc(userId).collection("items").doc(docId);
@@ -39,6 +43,8 @@ class Database {
     Map<String, dynamic> data = <String, dynamic>{
       "title": title,
       "description": description,
+      "origin": origin,
+      "imageURL": imageURL,
     };
     print(userId! + "And" + docId);
     await documentReference

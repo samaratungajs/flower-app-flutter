@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 class EditScreen extends StatefulWidget {
   final String currentTitle;
   final String currrentDescription;
+  final String currrentOrigin;
+  final String currrentImageURL;
   final String documentId;
 
   const EditScreen({
     required this.currentTitle,
     required this.currrentDescription,
+    required this.currrentOrigin,
+    required this.currrentImageURL,
     required this.documentId,
   });
 
@@ -21,6 +25,8 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   final FocusNode _titleFocusNode = FocusNode();
   final FocusNode _descriptionFocusNode = FocusNode();
+  final FocusNode _originFocusNode = FocusNode();
+
   bool _isDeleting = false;
 
   @override
@@ -29,6 +35,7 @@ class _EditScreenState extends State<EditScreen> {
       onTap: () {
         _titleFocusNode.unfocus();
         _descriptionFocusNode.unfocus();
+        _originFocusNode.unfocus();
       },
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
@@ -39,40 +46,12 @@ class _EditScreenState extends State<EditScreen> {
             ),
           ),
           elevation: 2,
-          toolbarHeight: 150,
+          toolbarHeight: 80,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
             sectionName: "Update Category",
           ),
-          actions: [
-            _isDeleting
-                ? SizedBox(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Color.fromARGB(255, 6, 212, 178)),
-                      strokeWidth: 3,
-                    ),
-                    height: 1,
-                  )
-                : IconButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isDeleting = true;
-                      });
-                      await Database.deleteItem(
-                        docId: widget.documentId,
-                      );
-                      setState(() {
-                        _isDeleting = false;
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(
-                      Icons.delete_sharp,
-                      color: Colors.redAccent,
-                      size: 32,
-                    ))
-          ],
+          
         ),
         body: SafeArea(
             child: Padding(
@@ -81,8 +60,12 @@ class _EditScreenState extends State<EditScreen> {
               documentId: widget.documentId,
               titleFocusNode: _titleFocusNode,
               descriptionFocusNode: _descriptionFocusNode,
+              originFocusNode: _originFocusNode,
               currentTitle: widget.currentTitle,
-              currentDescription: widget.currrentDescription),
+              currentDescription: widget.currrentDescription,
+              currentOrigin: widget.currrentOrigin,
+              currentImageURL: widget.currrentImageURL,
+              ),
         )),
       ),
     );

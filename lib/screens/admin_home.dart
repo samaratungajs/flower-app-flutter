@@ -44,11 +44,11 @@ class _AdminHomeState extends State<AdminHome> {
                 //Admin header with search
                 Container(
                   margin: EdgeInsets.only(bottom: 15),
-                  height: size.height * 0.25,
+                  height: size.height * 0.21,
                   child: Stack(
                     children: <Widget>[
                       Container(
-                        height: size.height * 0.25 - 27,
+                        height: size.height * 0.21 - 27,
                         decoration: BoxDecoration(
                             color: Color.fromARGB(255, 29, 177, 152),
                             borderRadius: BorderRadius.only(
@@ -56,7 +56,7 @@ class _AdminHomeState extends State<AdminHome> {
                                 bottomRight: Radius.circular(36))),
                         child: Row(children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: EdgeInsets.only(left: 30),
                           ),
                           Text(
                             'Flower Categories',
@@ -68,6 +68,13 @@ class _AdminHomeState extends State<AdminHome> {
                                     fontWeight: FontWeight.bold),
                           ),
                           Spacer(),
+                          Padding(
+                  padding: EdgeInsets.only(right: 30,),
+          
+                      child: Image.asset(
+                        "assets/whitelogo.png",
+                        height: 40,
+                      )),
                         ]),
                       ),
                       Positioned(

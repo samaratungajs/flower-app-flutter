@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(
                     left: 16.0,
                     right: 16.0,
-                    bottom: 20.0,
+                    bottom: 30.0,
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -45,27 +45,27 @@ class _LoginScreenState extends State<LoginScreen> {
                               flex: 1,
                               child: Image.asset(
                                 'assets/robot.png',
-                                height: 140,
+                                height: 160,
                               )),
                           const SizedBox(
                             height: 20,
                           ),
                           const Text(
-                            'Flutter',
+                            'Flower Pedia',
                             style: TextStyle(
-                              color: Color.fromARGB(255, 0, 219, 114),
+                              color: Color.fromARGB(255, 33, 182, 137),
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Text(
-                            'CRUD',
-                            style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
+                          // const Text(
+                          //   'Pedia',
+                          //   style: TextStyle(
+                          //     color: Colors.orange,
+                          //     fontSize: 40,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // )
                         ],
                       )),
                       FutureBuilder(

@@ -8,15 +8,21 @@ class EditItemForm extends StatefulWidget {
   final String documentId;
   final String currentTitle;
   final String currentDescription;
+  final String currentOrigin;
+  final String currentImageURL;
   final FocusNode titleFocusNode;
   final FocusNode descriptionFocusNode;
+  final FocusNode originFocusNode;
 
   const EditItemForm({
     required this.documentId,
     required this.currentTitle,
     required this.currentDescription,
+    required this.currentImageURL,
+    required this.currentOrigin,
     required this.titleFocusNode,
     required this.descriptionFocusNode,
+    required this.originFocusNode,
   });
 
   @override
@@ -30,9 +36,11 @@ class _EditItemFormState extends State<EditItemForm> {
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionContoller = TextEditingController();
+  final TextEditingController _originContoller = TextEditingController();
 
   String updateTitle = "";
   String updateDescription = "";
+  String updateOrigin = "";
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +58,7 @@ class _EditItemFormState extends State<EditItemForm> {
                       height: 24.0,
                     ),
                     const Text(
-                      'Title',
+                      'Categry',
                       style: TextStyle(
                           color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
@@ -67,14 +75,43 @@ class _EditItemFormState extends State<EditItemForm> {
                         focusNode: widget.titleFocusNode,
                         keyboardType: TextInputType.text,
                         inputAction: TextInputAction.next,
-                        label: "Title",
-                        hint: "Write your title",
+                        label: "Category",
+                        hint: "Write category Name",
                         validator: (value) {
                           Validator.validateField(
                             value: value,
                           );
                           updateTitle = value;
                         }),
+                    const SizedBox(height: 24.0),
+
+                    const Text(
+                      'Origin',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 29, 177, 152),
+                          fontSize: 22.0,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    CustomFormField(
+                      initialValue: widget.currentOrigin,
+                        isLabelEnabled: false,
+                        controller: _originContoller,
+                        focusNode: widget.titleFocusNode,
+                        keyboardType: TextInputType.text,
+                        inputAction: TextInputAction.next,
+                        label: "Origin",
+                        hint: "Write origins",
+                        validator: (value) {
+                          Validator.validateField(
+                            value: value,
+                          );
+                          updateOrigin = value;
+                        }),
+
                     const SizedBox(height: 24.0),
                     const Text(
                       'Description',
@@ -96,7 +133,7 @@ class _EditItemFormState extends State<EditItemForm> {
                         keyboardType: TextInputType.text,
                         inputAction: TextInputAction.next,
                         label: "Description",
-                        hint: "Write your Description",
+                        hint: "Write Description",
                         validator: (value) {
                           Validator.validateField(
                             value: value,
@@ -134,6 +171,8 @@ class _EditItemFormState extends State<EditItemForm> {
                             await Database.updatedItem(
                                 docId: widget.documentId,
                                 title: updateTitle,
+                                origin: updateOrigin,
+                              imageURL: widget.currentImageURL,
                                 description: updateDescription);
     
                             setState(() {

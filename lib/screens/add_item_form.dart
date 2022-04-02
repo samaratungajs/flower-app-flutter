@@ -10,10 +10,12 @@ import 'package:image_picker/image_picker.dart';
 class AddItemFormm extends StatefulWidget {
   final FocusNode titleFocusNode;
   final FocusNode descriptionFocusNode;
+  final FocusNode  originFocusNode;
 
   const AddItemFormm({
     required this.titleFocusNode,
     required this.descriptionFocusNode,
+    required this. originFocusNode,
   });
 
   @override
@@ -27,9 +29,11 @@ class _AddItemFormmState extends State<AddItemFormm> {
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionContoller = TextEditingController();
+  final TextEditingController _originContoller = TextEditingController();
 
   String getTitle = "";
   String getDescription = "";
+  String getOrigin = "";
   static String imageURL = "";
 
   static var pickedImage;
@@ -47,9 +51,11 @@ class _AddItemFormmState extends State<AddItemFormm> {
     setState(() {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Image Uploaded")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Image Uploaded")));
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No Image Uploaded")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("No Image Uploaded")));
       }
     });
   }
@@ -75,38 +81,39 @@ class _AddItemFormmState extends State<AddItemFormm> {
                       // decoration: BoxDecoration(
                       //     color: Color.fromARGB(255, 29, 177, 152),
                       //     borderRadius: BorderRadius.circular(20)),
-                      child:Column(
-                        //crossAxisAlignment: center,
-                        children:[
-                        ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: SizedBox.fromSize(
-                            size: Size.fromRadius(88), // Image radius
-                            child: _image == null
-                                ? Image.network(
-                                    "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
-                                    fit: BoxFit.cover)
-                                : Image.file(_image!)),
-                      ),
-                      Padding(
-                      padding: EdgeInsets.only(top: 10.0),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.camera_alt_sharp,
-                          size: 35,
-                          color: Colors.grey,
-                        ),
-                        onPressed: () {
-                          getImage(context);
-                        },
-                      ),
+                      child: Column(
+                          //crossAxisAlignment: center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox.fromSize(
+                                  size: Size.fromRadius(88), // Image radius
+                                  child: _image == null
+                                      ? Image.network(
+                                          "https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg",
+                                          fit: BoxFit.cover)
+                                      : Image.file(_image!)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 216, 216, 216),
+                                radius: 20,
+                                child: IconButton(
+                                  icon: Icon(Icons.camera_alt_rounded,
+                                      size: 25,
+                                      color: Color.fromARGB(255, 99, 99, 99)),
+                                  onPressed: () {
+                                    getImage(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
                     ),
-                      ]
-                      ), 
-                    ),
-                    
                     const Text(
-                      'Title',
+                      'Category',
                       style: TextStyle(
                           color: Color.fromARGB(255, 29, 177, 152),
                           fontSize: 22.0,
@@ -124,7 +131,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                         keyboardType: TextInputType.text,
                         inputAction: TextInputAction.next,
                         label: "Title",
-                        hint: "Write your title",
+                        hint: "Write your category namme",
                         validator: (value) {
                           Validator.validateField(
                             value: value,
@@ -132,6 +139,33 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           getTitle = value;
                         }),
                     const SizedBox(height: 24.0),
+                     const Text(
+                      'Origin',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 29, 177, 152),
+                          fontSize: 22.0,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    CustomFormField(
+                        initialValue: "",
+                        isLabelEnabled: false,
+                        controller: _originContoller,
+                        focusNode: widget.titleFocusNode,
+                        keyboardType: TextInputType.text,
+                        inputAction: TextInputAction.next,
+                        label: "Title",
+                        hint: "Write your title",
+                        validator: (value) {
+                          Validator.validateField(
+                            value: value,
+                          );
+                          getOrigin = value;
+                        }),
+                        const SizedBox(height: 24.0),
                     const Text(
                       'Description',
                       style: TextStyle(
@@ -159,6 +193,8 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           );
                           getDescription = value;
                         }),
+
+                       
                   ],
                 ),
               ),
@@ -188,13 +224,13 @@ class _AddItemFormmState extends State<AddItemFormm> {
                               _isProcessing = true;
                             });
 
-                            
-                               await ref.putFile(File(pickedImage!.path));
+                            await ref.putFile(File(pickedImage!.path));
                             imageURL = await ref.getDownloadURL();
 
-                              await Database.addItem(
+                            await Database.addItem(
                                 title: getTitle,
                                 description: getDescription,
+                                origin: getOrigin,
                                 imageURL: imageURL);
 
                             setState(() {
@@ -202,8 +238,8 @@ class _AddItemFormmState extends State<AddItemFormm> {
                               pickedImage = null;
                             });
                             Navigator.of(context).pop();
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Form is submitted")));
-                           
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Form is submitted")));
                           }
                         },
                         child: Padding(
