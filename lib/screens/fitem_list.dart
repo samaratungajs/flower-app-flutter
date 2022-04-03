@@ -1,28 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crud_app/screens/edit_screen.dart';
+import 'package:crud_app/screens/edit_fscreen.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemList extends StatelessWidget {
+  const ItemList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Database.readItems(),
+      stream: Database.readFlowerItems(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text('something went wrong');
         } else if (snapshot.hasData || snapshot.data != null) {
           return ListView.separated(
             separatorBuilder: (context, index) => SizedBox(height: 16.0),
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              var noteInfo =
+              var noteinfo =
                   snapshot.data!.docs[index].data() as Map<String, dynamic>;
-
               String docId = snapshot.data!.docs[index].id;
-              String title = noteInfo["title"];
-              String description = noteInfo["description"];
+              String title = noteinfo['title'];
+              String description = noteinfo['description'];
 
               return Ink(
                 decoration: BoxDecoration(
@@ -31,12 +31,13 @@ class ItemList extends StatelessWidget {
                 ),
                 child: ListTile(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => EditScreen(
                         currentTitle: title,
-                        currrentDescription: description,
+                        currentDescription: description,
                         documentId: docId,
                       ),
                     ),
@@ -44,7 +45,6 @@ class ItemList extends StatelessWidget {
                   title: Text(
                     title,
                     maxLines: 1,
-                    style: TextStyle(fontSize: 20),
                     overflow: TextOverflow.ellipsis,
                   ),
                   subtitle: Text(
@@ -57,6 +57,7 @@ class ItemList extends StatelessWidget {
             },
           );
         }
+
         return Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),

@@ -1,3 +1,4 @@
+import 'package:crud_app/screens/fhome.dart';
 import 'package:crud_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,13 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      debugShowCheckedModeBanner:false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Poppins'
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Poppins'),
       home: LoginScreen(),
     );
   }
 }
-

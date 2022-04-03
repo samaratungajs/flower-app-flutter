@@ -18,7 +18,7 @@ class CustomFormField extends StatelessWidget {
   })  : _keyboardType = keyboardType,
         _inputAction = inputAction,
         _label = label,
-        _initialValue=initialValue,
+        _initialValue = initialValue,
         _hint = hint,
         _validator = validator,
         super(key: key);
@@ -70,9 +70,7 @@ class CustomFormField extends StatelessWidget {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide:
-              BorderSide(
-                color: Color.fromARGB(255, 255, 8, 243), width: 2
-                ),
+              BorderSide(color: Color.fromARGB(255, 255, 8, 243), width: 2),
         ),
       ),
     );

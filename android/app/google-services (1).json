@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "167766537419",
-    "project_id": "flower-app-flutter",
-    "storage_bucket": "flower-app-flutter.appspot.com"
+    "project_number": "747346066516",
+    "project_id": "flower-14f03",
+    "storage_bucket": "flower-14f03.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:167766537419:android:50662dbb545c9df97b574e",
+        "mobilesdk_app_id": "1:747346066516:android:d689c8ec4bd49b1471c1c1",
         "android_client_info": {
           "package_name": "com.example.crud_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "167766537419-mtussv2513magudtt6qmhihjj97i3i8s.apps.googleusercontent.com",
+          "client_id": "747346066516-ll4jnf4m6290qain0qff1cp4d4qkavr9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDo9hysadds4cUv6s-n5CSu3pBSSGsArnk"
+          "current_key": "AIzaSyCcIOTRdiDSaYB7TNPvX1OGUbrQ7_N-ACc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "167766537419-mtussv2513magudtt6qmhihjj97i3i8s.apps.googleusercontent.com",
+              "client_id": "747346066516-ll4jnf4m6290qain0qff1cp4d4qkavr9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

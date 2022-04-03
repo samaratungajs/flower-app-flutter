@@ -67,8 +67,6 @@ class _AddItemFormmState extends State<AddItemFormm> {
                             value: value,
                           );
                           getTitle = value;
-    
-    
                         }),
                     const SizedBox(height: 24.0),
                     const Text(
@@ -92,15 +90,12 @@ class _AddItemFormmState extends State<AddItemFormm> {
                         inputAction: TextInputAction.next,
                         label: "Description",
                         hint: "Write your Description",
-                       validator: (value) {
+                        validator: (value) {
                           Validator.validateField(
                             value: value,
                           );
                           getDescription = value;
-    
-                          
-                        }
-                        ),
+                        }),
                   ],
                 ),
               ),
@@ -124,15 +119,14 @@ class _AddItemFormmState extends State<AddItemFormm> {
                         onPressed: () async {
                           widget.titleFocusNode.unfocus();
                           widget.descriptionFocusNode.unfocus();
-    
+
                           if (_addItemFormKey.currentState!.validate()) {
                             setState(() {
                               _isProcessing = true;
                             });
                             await Database.addItem(
-                                title: getTitle,
-                                description: getDescription);
-    
+                                title: getTitle, description: getDescription);
+
                             setState(() {
                               _isProcessing = false;
                             });

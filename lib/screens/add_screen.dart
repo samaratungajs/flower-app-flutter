@@ -3,8 +3,7 @@ import 'package:crud_app/screens/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class AddScreen extends StatelessWidget {
-  
-final FocusNode _titleFocusNode = FocusNode();
+  final FocusNode _titleFocusNode = FocusNode();
   final FocusNode _descriptionFocusNode = FocusNode();
 
   @override
@@ -17,21 +16,19 @@ final FocusNode _titleFocusNode = FocusNode();
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 40, 67, 88),
         appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.blueGrey,
-        title:const AppBarTitle(
-          sectionName:"Add Ittem",
-        ),
-      ),
-      body: SafeArea(
-        child:Padding(
-          padding:  EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20),
-          child: AddItemFormm(
-            titleFocusNode: _titleFocusNode,
-            descriptionFocusNode: _descriptionFocusNode
+          elevation: 0,
+          backgroundColor: Colors.blueGrey,
+          title: const AppBarTitle(
+            sectionName: "Add Ittem",
           ),
-          )
-         ),
+        ),
+        body: SafeArea(
+            child: Padding(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20),
+          child: AddItemFormm(
+              titleFocusNode: _titleFocusNode,
+              descriptionFocusNode: _descriptionFocusNode),
+        )),
       ),
     );
   }

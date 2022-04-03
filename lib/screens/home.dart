@@ -35,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
-              child: ItemList(),
-              ),
-              ),
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
+          child: ItemList(),
+        ),
+      ),
     );
   }
 }
