@@ -1,5 +1,5 @@
-import 'package:crud_app/screens/add_item_form.dart';
-import 'package:crud_app/screens/app_bar.dart';
+import 'package:crud_app/screens/admin/category/add_item_form.dart';
+import 'package:crud_app/screens/admin/category/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class AddScreen extends StatelessWidget {

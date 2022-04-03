@@ -1,6 +1,5 @@
-import 'package:crud_app/screens/app_bar.dart';
-import 'package:crud_app/screens/edit_item_form.dart';
-import 'package:crud_app/validators/database.dart';
+import 'package:crud_app/screens/admin/category/app_bar.dart';
+import 'package:crud_app/screens/admin/category/edit_item_form.dart';
 import 'package:flutter/material.dart';
 
 class EditScreen extends StatefulWidget {

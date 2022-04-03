@@ -1,7 +1,5 @@
 import 'dart:convert';
-
-import 'package:crud_app/screens/admin_home.dart';
-import 'package:crud_app/screens/home.dart';
+import 'package:crud_app/screens/admin/category/admin_home.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';

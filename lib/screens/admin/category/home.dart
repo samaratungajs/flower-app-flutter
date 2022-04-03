@@ -1,6 +1,5 @@
-import 'package:crud_app/screens/add_screen.dart';
-import 'package:crud_app/screens/app_bar.dart';
-import 'package:crud_app/screens/item_list.dart';
+
+import 'package:crud_app/screens/admin/category/add_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'admin_header_with_search.dart';
