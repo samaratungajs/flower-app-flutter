@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:crud_app/screens/admin/admin_dashboard.dart';
 import 'package:crud_app/screens/admin/category/admin_home.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
@@ -18,6 +19,33 @@ class _LoginFormState extends State<LoginForm> {
 
   final _logInFormKey = GlobalKey<FormState>();
   String getUserId = "";
+
+// Show Alert box
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {Navigator.of(context).pop();},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Invalid User ID"),
+      content: Text("Please input a valid user ID !"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -30,8 +58,8 @@ class _LoginFormState extends State<LoginForm> {
               child: Column(
                 children: [
                   CustomFormField(
-                    initialValue: "",
-                    isObscure: true,
+                      initialValue: "",
+                      isObscure: true,
                       controller: _uidController,
                       focusNode: widget.focusNode,
                       keyboardType: TextInputType.text,
@@ -53,8 +81,8 @@ class _LoginFormState extends State<LoginForm> {
                 width: double.maxFinite,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Color.fromARGB(255, 29, 177, 152)),
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 29, 177, 152)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     )),
@@ -64,12 +92,16 @@ class _LoginFormState extends State<LoginForm> {
 
                     if (_logInFormKey.currentState!.validate()) {
                       Database.userId = getUserId;
-
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => AdminHome(),
-                        ),
-                      );
+                      if (getUserId == "admin") {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Admindahboard(),
+                          ),
+                        );
+                      } else {
+                        showAlertDialog(context);
+                        
+                      }
                     }
                   },
                   child: Padding(
