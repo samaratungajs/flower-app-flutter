@@ -94,9 +94,9 @@ class _AddItemFormState extends State<AddFItemForm> {
                     )
                   ]),
                 ),
-                const Text('Title',
+                const Text('Flower Name',
                     style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Color.fromARGB(255, 9, 75, 103),
                         fontSize: 22.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold)),
@@ -108,17 +108,17 @@ class _AddItemFormState extends State<AddFItemForm> {
                   focusNode: widget.titleFocusNode,
                   keyboardType: TextInputType.text,
                   inputAction: TextInputAction.next,
-                  label: "Title",
-                  hint: "Write your title",
+                  label: "Flower Name",
+                  hint: "Write your flower name",
                   validator: (value) {
                     Validator.validateField(value: value);
                     getTitle = value;
                   },
                 ),
                 SizedBox(height: 9.0),
-                Text('description',
+                Text('Description',
                     style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Color.fromARGB(255, 9, 75, 103),
                         fontSize: 22.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold)),
@@ -145,16 +145,16 @@ class _AddItemFormState extends State<AddFItemForm> {
               ? const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.amberAccent),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Color.fromARGB(255, 9, 75, 103)),
                   ),
                 )
               : Container(
                   width: double.maxFinite,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.orangeAccent),
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 9, 75, 103)),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     onPressed: () async {
@@ -188,7 +188,7 @@ class _AddItemFormState extends State<AddFItemForm> {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey,
+                            color: Colors.black,
                             letterSpacing: 2,
                           ),
                         )),

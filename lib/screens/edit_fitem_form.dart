@@ -9,7 +9,7 @@ class EditItemForm extends StatefulWidget {
   final FocusNode titleFocusNode;
   final FocusNode descriptionFocusNode;
   final String currentTitle;
-  final String  currentImageURL;
+  final String currentImageURL;
   final String currrentDescription;
   final String documentId;
 
@@ -48,9 +48,9 @@ class _EditItemFormState extends State<EditItemForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 24.0),
-                Text('Title',
+                Text('Flower Name',
                     style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Color.fromARGB(255, 9, 75, 103),
                         fontSize: 22.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold)),
@@ -62,17 +62,17 @@ class _EditItemFormState extends State<EditItemForm> {
                   focusNode: widget.titleFocusNode,
                   keyboardType: TextInputType.text,
                   inputAction: TextInputAction.next,
-                  label: "Title",
-                  hint: "Write your title",
+                  label: "Flower",
+                  hint: "Write the Flower name",
                   validator: (value) {
                     Validator.validateField(value: value);
                     updateTitle = value;
                   },
                 ),
                 SizedBox(height: 9.0),
-                Text('description',
+                Text('Description',
                     style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Color.fromARGB(255, 9, 75, 103),
                         fontSize: 22.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold)),
@@ -107,8 +107,8 @@ class _EditItemFormState extends State<EditItemForm> {
                   width: double.maxFinite,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.orangeAccent),
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 9, 75, 103)),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     onPressed: () async {
@@ -140,7 +140,7 @@ class _EditItemFormState extends State<EditItemForm> {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey,
+                            color: Colors.black,
                             letterSpacing: 2,
                           ),
                         )),

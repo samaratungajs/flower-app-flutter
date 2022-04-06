@@ -14,10 +14,10 @@ class AddFScreen extends StatelessWidget {
         _descriptionFocusNode.unfocus();
       },
       child: Scaffold(
-          backgroundColor: Colors.amberAccent,
+          backgroundColor: Colors.blueGrey[50],
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: Colors.amberAccent,
+            backgroundColor: Color.fromARGB(255, 29, 177, 152),
             title: const AppBarTitle(
               sectionName: 'Crud',
             ),

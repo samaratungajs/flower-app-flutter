@@ -12,22 +12,16 @@ class AppBarTitle extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          'assets/firebase_logo.png',
-          height: 20,
-        ),
-        const Text(
-          'FlutterFire',
-          style: TextStyle(color: Colors.yellowAccent, fontSize: 18),
-        ),
+      children: const [
+        // Image.asset(
+
+        //   height: 20,
+        // ),
         Text(
-          '$sectionName ',
-          style: const TextStyle(
-            color: Colors.orangeAccent,
-            fontSize: 18,
-          ),
-        )
+          'Add Flower Details',
+          style:
+              TextStyle(color: Color.fromARGB(255, 9, 75, 103), fontSize: 18),
+        ),
       ],
     );
   }

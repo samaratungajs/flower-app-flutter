@@ -67,14 +67,14 @@ class _AdminHomeState extends State<AdminHome> {
                                     fontWeight: FontWeight.bold),
                           ),
                           Spacer(),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                right: 30,
-                              ),
-                              child: Image.asset(
-                                "assets/whitelogo.png",
-                                height: 40,
-                              )),
+                          // Padding(
+                          //     padding: EdgeInsets.only(
+                          //       right: 30,
+                          //     ),
+                          //     child: Image.asset(
+                          //       "assets/whitelogo.png",
+                          //       height: 40,
+                          //     )),
                         ]),
                       ),
                       Positioned(

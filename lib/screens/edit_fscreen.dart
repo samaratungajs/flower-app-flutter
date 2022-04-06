@@ -32,7 +32,7 @@ class _EditScreenState extends State<EditScreen> {
         _descriptionFocusNode.unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.blueGrey[50],
         appBar: AppBar(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -41,9 +41,7 @@ class _EditScreenState extends State<EditScreen> {
           elevation: 2,
           toolbarHeight: 80,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
-          title: const AppBarTitle(
-            sectionName: "Update Category",
-          ),
+          title: const Text("Update  Details"),
         ),
         body: SafeArea(
             child: Padding(
