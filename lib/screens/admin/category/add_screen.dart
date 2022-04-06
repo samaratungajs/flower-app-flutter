@@ -26,6 +26,7 @@ class AddScreen extends StatelessWidget {
           ),
           toolbarHeight: 80,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
+          centerTitle: true,
           title: const AppBarTitle(
             sectionName: "Add Category",
             

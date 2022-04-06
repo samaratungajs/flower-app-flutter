@@ -16,6 +16,7 @@ class Admindahboard extends StatelessWidget {
             ),
           ),
           toolbarHeight: 80,
+          centerTitle: true,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
             sectionName: "Admin Dashboard",
@@ -30,12 +31,12 @@ class Admindahboard extends StatelessWidget {
               onTap: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => AdminHome())),
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color.fromARGB(148, 31, 196, 155)),
+                decoration: BoxDecoration(border:Border.all(width: 3.0,color: Color.fromARGB(148, 31, 196, 155)) ,borderRadius: BorderRadius.circular(20), color: Colors.white),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.list_alt_rounded, size: 50, color: Colors.white,),
-                    Text("Categories", style: TextStyle(color: Colors.white, fontSize:25,fontWeight: FontWeight.bold,)
+                    Icon(Icons.list_alt_rounded, size: 50, color: Color.fromARGB(148, 31, 196, 155),),
+                    Text("Categories", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
                 ),
@@ -46,12 +47,12 @@ class Admindahboard extends StatelessWidget {
               // onTap: () => Navigator.of(context)
               //   .push(MaterialPageRoute(builder: (context) => AdminHome())),
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color.fromARGB(148, 31, 196, 155)),
+                decoration: BoxDecoration(border:Border.all(width: 3.0,color: Color.fromARGB(148, 31, 196, 155)), borderRadius: BorderRadius.circular(20), color: Colors.white),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.book_online_rounded, size: 50, color: Colors.white,),
-                    Text("Test", style: TextStyle(color: Colors.white, fontSize:25,fontWeight: FontWeight.bold,)
+                    Icon(Icons.book_online_rounded, size: 50, color:Color.fromARGB(148, 31, 196, 155),),
+                    Text("Test", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
                 ),
@@ -62,12 +63,12 @@ class Admindahboard extends StatelessWidget {
               // onTap: () => Navigator.of(context)
               //   .push(MaterialPageRoute(builder: (context) => AdminHome())),
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Color.fromARGB(148, 31, 196, 155)),
+                decoration: BoxDecoration(border:Border.all(width: 3.0,color: Color.fromARGB(148, 31, 196, 155)), borderRadius: BorderRadius.circular(20), color: Colors.white),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.chat_bubble_outline_rounded, size: 50, color: Colors.white,),
-                    Text("Test", style: TextStyle(color: Colors.white, fontSize:25,fontWeight: FontWeight.bold,)
+                    Icon(Icons.chat_bubble_outline_rounded, size: 50, color: Color.fromARGB(148, 31, 196, 155),),
+                    Text("Test", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
                 ),

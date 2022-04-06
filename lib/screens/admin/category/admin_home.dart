@@ -55,7 +55,7 @@ class _AdminHomeState extends State<AdminHome> {
                                 bottomRight: Radius.circular(36))),
                         child: Row(children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(left: 30),
+                            padding: EdgeInsets.only(left: 100),
                           ),
                           Text(
                             'Flower Categories',
@@ -66,14 +66,15 @@ class _AdminHomeState extends State<AdminHome> {
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                           ),
-                          Spacer(),
-                          Padding(
-                  padding: EdgeInsets.only(right: 30,),
+                  //         Spacer(),
+                  //         Padding(
+                  // padding: EdgeInsets.only(right: 30,),
           
-                      child: Image.asset(
-                        "assets/whitelogo.png",
-                        height: 40,
-                      )),
+                  //     // child: Image.asset(
+                  //     //   "assets/whitelogo.png",
+                  //     //   height: 40,
+                  //     // )
+                  //     ),
                         ]),
                       ),
                       Positioned(

@@ -47,6 +47,7 @@ class _EditScreenState extends State<EditScreen> {
           elevation: 2,
           toolbarHeight: 80,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
+          centerTitle: true,
           title: const AppBarTitle(
             sectionName: "Update Category",
           ),
