@@ -67,13 +67,16 @@ class Database {
 
 //add flower details
   static Future<void> addFlowerItem(
-      {required String title, required String description}) async {
+      {required String title,
+      required String description,
+      required String imageURL}) async {
     DocumentReference documentReference =
         _mainCollection.doc(userId).collection('flower').doc();
 
     Map<String, dynamic> data = <String, dynamic>{
       "title": title,
       "description": description,
+      "imageURL": imageURL
     };
 
     await documentReference
@@ -83,17 +86,18 @@ class Database {
   }
 
 //update flower items
-  static Future<void> updateFlowerItem({
-    required String title,
-    required String description,
-    required String docId,
-  }) async {
+  static Future<void> updateFlowerItem(
+      {required String title,
+      required String description,
+      required String docId,
+      required String imageURL}) async {
     DocumentReference documentReference =
         _mainCollection.doc(userId).collection('flower').doc(docId);
 
     Map<String, dynamic> data = <String, dynamic>{
       "title": title,
       "description": description,
+      "imageURL": imageURL,
     };
 
     await documentReference
@@ -103,14 +107,22 @@ class Database {
   }
 
 //Display all flower items
-  static Stream<QuerySnapshot> readFlowerItems() {
-    CollectionReference notesItemCollection =
-        _mainCollection.doc(userId).collection('flower');
-
-    return notesItemCollection.snapshots();
+  static Stream<QuerySnapshot> readFlowerItems(String? keyword) {
+    if (keyword != "" && keyword != null) {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection
+          .where("title", isGreaterThanOrEqualTo: keyword)
+          .where("title", isLessThanOrEqualTo: keyword + 'z')
+          .snapshots();
+    } else {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection.snapshots();
+    }
   }
 
-  static Future<void> deleteFlowerItem({
+  static Future<void> deleteFlowerItems({
     required String docId,
   }) async {
     DocumentReference documentReference =
@@ -118,8 +130,7 @@ class Database {
 
     await documentReference
         .delete()
-        .whenComplete(
-            () => print("Note flower item is deleted from the data base"))
+        .whenComplete(() => print("Note item delete fromm the database"))
         .catchError((e) => print(e));
   }
 }

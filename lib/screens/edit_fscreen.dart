@@ -6,10 +6,12 @@ import 'package:crud_app/validators/database.dart';
 class EditScreen extends StatefulWidget {
   final String currentTitle;
   final String currentDescription;
+  final String currentImageURL;
   final String documentId;
   EditScreen(
       {required this.currentTitle,
       required this.currentDescription,
+      required this.currentImageURL,
       required this.documentId});
 
   @override
@@ -32,37 +34,16 @@ class _EditScreenState extends State<EditScreen> {
       child: Scaffold(
         backgroundColor: Colors.amberAccent,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.amberAccent,
-          title: AppBarTitle(sectionName: 'CRUD'),
-          actions: [
-            _isDeleting
-                ? Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10.0, bottom: 10.0, right: 16.0),
-                    child: CircularProgressIndicator(
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        Colors.redAccent,
-                      ),
-                      strokeWidth: 3,
-                    ),
-                  )
-                : IconButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isDeleting = true;
-                      });
-                      await Database.deleteFlowerItem(
-                        docId: widget.documentId,
-                      );
-                      setState(() {
-                        _isDeleting = false;
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(Icons.delete_forever,
-                        color: Colors.redAccent, size: 32)),
-          ],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          )),
+          elevation: 2,
+          toolbarHeight: 80,
+          backgroundColor: Color.fromARGB(255, 29, 177, 152),
+          title: const AppBarTitle(
+            sectionName: "Update Category",
+          ),
         ),
         body: SafeArea(
             child: Padding(
@@ -74,6 +55,7 @@ class _EditScreenState extends State<EditScreen> {
           child: EditItemForm(
               documentId: widget.documentId,
               titleFocusNode: _titleFocusNode,
+              currentImageURL: widget.currentImageURL,
               descriptionFocusNode: _descriptionFocusNode,
               currentTitle: widget.currentTitle,
               currrentDescription: widget.currentDescription),

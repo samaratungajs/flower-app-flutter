@@ -9,6 +9,7 @@ class EditItemForm extends StatefulWidget {
   final FocusNode titleFocusNode;
   final FocusNode descriptionFocusNode;
   final String currentTitle;
+  final String  currentImageURL;
   final String currrentDescription;
   final String documentId;
 
@@ -16,6 +17,7 @@ class EditItemForm extends StatefulWidget {
       {required this.titleFocusNode,
       required this.descriptionFocusNode,
       required this.currrentDescription,
+      required this.currentImageURL,
       required this.currentTitle,
       required this.documentId});
 
@@ -97,7 +99,8 @@ class _EditItemFormState extends State<EditItemForm> {
               ? const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.amberAccent),
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.amberAccent),
                   ),
                 )
               : Container(
@@ -111,21 +114,22 @@ class _EditItemFormState extends State<EditItemForm> {
                     onPressed: () async {
                       widget.titleFocusNode.unfocus();
                       widget.descriptionFocusNode.unfocus();
-    
+
                       if (_addItemForKey.currentState!.validate()) {
                         setState(() {
                           _isProcessing = true;
                         });
-    
+
                         await Database.updateFlowerItem(
                             docId: widget.documentId,
                             title: updateTitle,
+                            imageURL: widget.currentImageURL,
                             description: updateDescription);
-    
+
                         setState(() {
                           _isProcessing = false;
                         });
-    
+
                         Navigator.of(context).pop();
                       }
                     },
