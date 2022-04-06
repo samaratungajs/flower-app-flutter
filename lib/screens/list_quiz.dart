@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_app/screens/edit_quiz_screen.dart';
+import 'package:crud_app/screens/view_question_screen.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,23 +54,23 @@ class QuestionList extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
-                          subtitle: Column(
-                            children: [
-                              Text(
-                                answer,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Color.fromARGB(255, 13, 145, 72)
-                                        .withOpacity(0.6)),
-                              ),
-                              Text(
-                                wrongAnswer,
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 180, 48, 15)
-                                        .withOpacity(0.6)),
-                              ),
-                            ],
-                          ),
+                          // subtitle: Column(
+                          //   children: [
+                          //     Text(
+                          //       answer,
+                          //       style: TextStyle(
+                          //           fontWeight: FontWeight.w700,
+                          //           color: Color.fromARGB(255, 13, 145, 72)
+                          //               .withOpacity(0.6)),
+                          //     ),
+                          //     Text(
+                          //       wrongAnswer,
+                          //       style: TextStyle(
+                          //           color: Color.fromARGB(255, 180, 48, 15)
+                          //               .withOpacity(0.6)),
+                          //     ),
+                          //   ],
+                          // ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -82,6 +83,40 @@ class QuestionList extends StatelessWidget {
                         ButtonBar(
                           alignment: MainAxisAlignment.start,
                           children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 15, 228, 26),
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => ViewQuestionScreen(
+                                    currentQuestion: question,
+                                    currentAnswer: answer,
+                                    currentWrongAnswer: wrongAnswer,
+                                    currrentDescription: description,
+                                    currrentImageURL: imageURL,
+                                    documentId: docId,
+                                  ),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('View'), // <-- Text
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Icon(
+                                    // <-- Icon
+                                    Icons.edit,
+                                    size: 14.0,
+                                  ),
+                                ],
+                              ),
+                            ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.amber,
@@ -106,12 +141,12 @@ class QuestionList extends StatelessWidget {
                                 children: [
                                   Text('Update'), // <-- Text
                                   SizedBox(
-                                    width: 3,
+                                    width: 2,
                                   ),
                                   Icon(
                                     // <-- Icon
                                     Icons.edit,
-                                    size: 16.0,
+                                    size: 14.0,
                                   ),
                                 ],
                               ),
@@ -128,12 +163,12 @@ class QuestionList extends StatelessWidget {
                                 children: [
                                   Text('Delete'), // <-- Text
                                   SizedBox(
-                                    width: 3,
+                                    width: 2,
                                   ),
                                   Icon(
                                     // <-- Icon
                                     Icons.delete,
-                                    size: 16.0,
+                                    size: 14.0,
                                   ),
                                 ],
                               ),
