@@ -48,7 +48,7 @@ class QuestionList extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
-                          leading: Icon(Icons.arrow_drop_down_circle),
+                          leading: Icon(Icons.contact_support_rounded),
                           title: Text(
                             question,
                             style: TextStyle(

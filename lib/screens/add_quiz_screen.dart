@@ -26,7 +26,7 @@ class AddQuizScreen extends StatelessWidget {
               bottom: Radius.circular(30),
             ),
           ),
-          toolbarHeight: 150,
+          toolbarHeight: 70,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
             sectionName: "Add Question",

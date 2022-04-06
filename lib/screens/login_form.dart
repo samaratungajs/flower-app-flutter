@@ -7,6 +7,8 @@ import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:crud_app/custom_form_field.dart';
 
+import 'package:crud_app/screens/quiz_home.dart';
+
 class LoginForm extends StatefulWidget {
   final FocusNode focusNode;
   const LoginForm({Key? key, required this.focusNode}) : super(key: key);
@@ -69,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => AdminHome(),
+                          builder: (context) => QuizHome(),
                         ),
                       );
                     }

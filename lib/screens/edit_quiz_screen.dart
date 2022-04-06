@@ -49,7 +49,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
             ),
           ),
           elevation: 2,
-          toolbarHeight: 150,
+          toolbarHeight: 70,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
           title: const AppBarTitle(
             sectionName: "Update Quiz",
