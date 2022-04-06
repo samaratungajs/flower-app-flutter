@@ -14,6 +14,7 @@ class EditQuizForm extends StatefulWidget {
   final FocusNode questionFocusNode;
   final FocusNode wrongAnswerFocusNode;
   final FocusNode descriptionFocusNode;
+  final String currentImageURL;
 
   const EditQuizForm({
     required this.documentId,
@@ -25,6 +26,7 @@ class EditQuizForm extends StatefulWidget {
     required this.descriptionFocusNode,
     required this.wrongAnswerFocusNode,
     required this.questionFocusNode,
+    required this.currentImageURL,
   });
 
   @override
@@ -207,7 +209,8 @@ class _EditQuizFormState extends State<EditQuizForm> {
                                 question : updateQuestion,
                                 answer: updateAnswer,
                                 wrongAnswer: updateWrongAnswer,
-                                description: updateDescription);
+                                description: updateDescription,
+                                imageURL: widget.currentImageURL,);
     
                             setState(() {
                               _isProcessing = false;

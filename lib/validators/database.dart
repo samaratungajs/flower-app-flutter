@@ -53,15 +53,13 @@ class Database {
       CollectionReference notesItemscollection =
           _mainCollection.doc(userId).collection('items');
       return notesItemscollection
-          .where("title", isGreaterThanOrEqualTo:keyword)
-          .where("title", isLessThanOrEqualTo:keyword + 'z')
+          .where("title", isGreaterThanOrEqualTo: keyword)
+          .where("title", isLessThanOrEqualTo: keyword + 'z')
           .snapshots();
-    }
-    else{
+    } else {
       CollectionReference notesItemscollection =
           _mainCollection.doc(userId).collection('items');
-      return notesItemscollection
-          .snapshots();
+      return notesItemscollection.snapshots();
     }
   }
 
@@ -77,7 +75,6 @@ class Database {
         .whenComplete(() => print("Note item delete fromm the database"))
         .catchError((e) => print(e));
   }
-
 
   ////////////////quiz
   //add questions
@@ -111,6 +108,7 @@ class Database {
     required String wrongAnswer,
     required String answer,
     required String description,
+    required String imageURL,
     required String docId,
   }) async {
     DocumentReference documentReference =
@@ -121,7 +119,7 @@ class Database {
       "answer": answer,
       "wrongAnswer": wrongAnswer,
       "description": description,
-
+      "imageURL": imageURL,
     };
     print(userId! + "And" + docId);
     await documentReference
@@ -136,15 +134,13 @@ class Database {
       CollectionReference quizQuestionscollection =
           _mainCollection.doc(userId).collection('quiz');
       return quizQuestionscollection
-          .where("question", isGreaterThanOrEqualTo:keyword)
-          .where("question", isLessThanOrEqualTo:keyword + 'z')
+          .where("question", isGreaterThanOrEqualTo: keyword)
+          .where("question", isLessThanOrEqualTo: keyword + 'z')
           .snapshots();
-    }
-    else{
+    } else {
       CollectionReference quizQuestionscollection =
           _mainCollection.doc(userId).collection('quiz');
-      return quizQuestionscollection
-          .snapshots();
+      return quizQuestionscollection.snapshots();
     }
   }
 
@@ -160,6 +156,4 @@ class Database {
         .whenComplete(() => print("Quiz question deleted from the database"))
         .catchError((e) => print(e));
   }
-
-
 }

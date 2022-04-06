@@ -9,6 +9,7 @@ class EditQuizScreen extends StatefulWidget {
   final String currentWrongAnswer;
   final String currrentDescription;
   final String documentId;
+  final String currrentImageURL;
 
   const EditQuizScreen({
     required this.currentQuestion,
@@ -16,6 +17,7 @@ class EditQuizScreen extends StatefulWidget {
     required this.currentWrongAnswer,
     required this.currrentDescription,
     required this.documentId,
+    required this.currrentImageURL,
   });
 
   @override
@@ -94,7 +96,9 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
               currentQuestion: widget.currentQuestion,
               currentAnswer: widget.currentAnswer,
               currentWrongAnswer: widget.currentWrongAnswer,
-              currentDescription: widget.currrentDescription),
+              currentDescription: widget.currrentDescription,
+              currentImageURL: widget.currrentImageURL,
+),
         )),
       ),
     );
