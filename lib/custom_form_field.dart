@@ -70,7 +70,7 @@ class CustomFormField extends StatelessWidget {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide:
-              BorderSide(color: Color.fromARGB(255, 255, 8, 243), width: 2),
+              BorderSide(color: Color.fromARGB(255, 109, 33, 105), width: 2),
         ),
       ),
     );

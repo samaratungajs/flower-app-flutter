@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_app/screens/edit_fscreen.dart';
+import 'package:crud_app/screens/view_flowerscreen.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -57,24 +58,41 @@ class ItemListUser extends StatelessWidget {
                             left: 16.0,
                             right: 16.0,
                           ),
-                          child: Text(
-                            description,
-                            maxLines: 4,
-                            style:
-                                TextStyle(color: Colors.black.withOpacity(0.6)),
-                          ),
                         ),
-
+                        ButtonBar(
+                          alignment: MainAxisAlignment.start,
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.amber,
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => ViewFlowerScreen(
+                                    currentTitle: title,
+                                    currentDescription: description,
+                                    currentImageURL: imageURL,
+                                    documentId: docId,
+                                  ),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('View'), // <-- Text
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                         // Image.network('https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg'),
-                        CachedNetworkImage(
-                          imageUrl: snapshot.data!.docs[index]['imageURL'],
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(
-                                      value: downloadProgress.progress),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        )
+
                         //Image.network(snapshot.data!.docs[index]['imageURL'] ?? 'https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg'),
                       ],
                     ),
