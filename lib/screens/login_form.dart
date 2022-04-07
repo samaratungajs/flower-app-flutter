@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:crud_app/screens/admin_fhome.dart';
 import 'package:crud_app/screens/fhome.dart';
 import 'package:crud_app/screens/fitem_list.dart';
+import 'package:crud_app/screens/user_fhome.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => AdminHome(),
+                          builder: (context) => UserHome(),
                         ),
                       );
                     }

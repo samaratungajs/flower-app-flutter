@@ -133,4 +133,12 @@ class Database {
         .whenComplete(() => print("Note item delete fromm the database"))
         .catchError((e) => print(e));
   }
+
+  //Display all flower items to users
+  static Stream<QuerySnapshot> readFlowerUserItems() {
+    CollectionReference notesItemCollection =
+        _mainCollection.doc(userId).collection('flower');
+
+    return notesItemCollection.snapshots();
+  }
 }
