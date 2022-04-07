@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:crud_app/screens/admin/admin_dashboard.dart';
 import 'package:crud_app/screens/admin/category/admin_home.dart';
+import 'package:crud_app/screens/client/client_dashboard.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,15 @@ class _LoginFormState extends State<LoginForm> {
                             builder: (context) => Admindahboard(),
                           ),
                         );
-                      } else {
+                      }
+                      else if (getUserId == "client") {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => ClientDashboard(),
+                          ),
+                        );
+                      } 
+                      else {
                         showAlertDialog(context);
                         
                       }
