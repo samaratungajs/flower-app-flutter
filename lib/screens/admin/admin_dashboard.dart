@@ -51,7 +51,7 @@ class Admindahboard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.book_online_rounded, size: 50, color:Color.fromARGB(148, 31, 196, 155),),
+                    Icon(Icons.line_style_rounded, size: 50, color:Color.fromARGB(148, 31, 196, 155),),
                     Text("Flowers", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
@@ -68,7 +68,22 @@ class Admindahboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.chat_bubble_outline_rounded, size: 50, color: Color.fromARGB(148, 31, 196, 155),),
-                    Text("Q & A", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
+                    Text("Q & A\nForum", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              // onTap: () => Navigator.of(context)
+              //   .push(MaterialPageRoute(builder: (context) => AdminHome())),
+              child: Container(
+                decoration: BoxDecoration(border:Border.all(width: 3.0,color: Color.fromARGB(148, 31, 196, 155)), borderRadius: BorderRadius.circular(20), color: Colors.white),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.quiz_rounded, size: 50, color: Color.fromARGB(148, 31, 196, 155),),
+                    Text("Quiz", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
                 ),

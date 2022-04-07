@@ -138,7 +138,7 @@ class ItemList extends StatelessWidget {
                           builder: (BuildContext ctx) {
                             return AlertDialog(
                               title: const Text('Please Confirm'),
-                              content:  Text("Are you sure to remove $title ccategory?"),
+                              content:  Text("Are you sure to remove $title category?"),
                               actions: [
                                 // The "Yes" button
                                 TextButton(
