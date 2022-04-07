@@ -34,6 +34,7 @@ class _ViewQuestionScreenState extends State<ViewQuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           shape: RoundedRectangleBorder(
@@ -44,8 +45,23 @@ class _ViewQuestionScreenState extends State<ViewQuestionScreen> {
           elevation: 2,
           toolbarHeight: 70,
           backgroundColor: Color.fromARGB(255, 29, 177, 152),
-          title: const AppBarTitle(
-            sectionName: "view Question",
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Image.asset(
+              //   'assets/whitelogo.png',
+              //   height: 10,
+              // ),
+              const SizedBox(width: 8),
+              Center(
+                child: Text(
+                  "View Question",
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ),
         ),
         backgroundColor: Color.fromARGB(255, 170, 242, 252),
@@ -60,29 +76,32 @@ class _ViewQuestionScreenState extends State<ViewQuestionScreen> {
             child: Column(
               children: [
                 ListTile(
-                  // leading: Icon(Icons.arrow_drop_down_circle),
+                  leading: Icon(Icons.contact_support_rounded),
                   title: Padding(
-                          padding: const EdgeInsets.all(14.0),
-                          child: Text(
-                    widget.currentQuestion,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                    padding: const EdgeInsets.all(14.0),
+                    child: Center(
+                      child: Text(
+                        widget.currentQuestion,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                    ),
                   ),
                   subtitle: Column(
                     children: [
                       Text(
-                        "Answer: "+widget.currentAnswer,
+                        "Answer: " + widget.currentAnswer,
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Color.fromARGB(255, 13, 145, 72)
                                 .withOpacity(0.6)),
                       ),
                       Text(
-                        "Wrong Answer: "+widget.currentWrongAnswer,
+                        "Wrong Answer: " + widget.currentWrongAnswer,
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Color.fromARGB(255, 180, 48, 15)
                                 .withOpacity(0.6)),
                       ),
@@ -93,7 +112,7 @@ class _ViewQuestionScreenState extends State<ViewQuestionScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     widget.currrentDescription,
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    style: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 18),
                   ),
                 ),
                 // ButtonBar(
@@ -231,7 +250,7 @@ class _ViewQuestionScreenState extends State<ViewQuestionScreen> {
                 // Image.network( widget.currrentImageURL ?
                 //     'https://png.pngtree.com/png-vector/20190723/ourlarge/pngtree-flower-web-icon--flat-line-filled-gray-icon-vector-png-image_1569041.jpg'),
                 CachedNetworkImage(
-                  width: 200,
+                  width: 300,
                   imageUrl: widget.currrentImageURL,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       CircularProgressIndicator(

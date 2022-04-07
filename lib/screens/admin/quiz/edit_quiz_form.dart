@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'dart:io';
 import 'package:crud_app/validators/validator.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/custom_form_field.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class EditQuizForm extends StatefulWidget {
   final String documentId;
@@ -46,7 +48,31 @@ class _EditQuizFormState extends State<EditQuizForm> {
   String updateQuestion = "";
   String updateWrongAnswer = "";
   String updateDescription = "";
+  static String imageURL = "";
+static var pickedImage;
+  File? _image;
 
+  //upload image
+  final picker = ImagePicker();
+  Reference ref = FirebaseStorage.instance
+      .ref()
+      .child("category" + DateTime.now().toString());
+
+  Future getImage(BuildContext context) async {
+    pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Image Uploaded")));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("No Image Uploaded")));
+      }
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -61,6 +87,42 @@ class _EditQuizFormState extends State<EditQuizForm> {
                   children: [
                     const SizedBox(
                       height: 24.0,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(6), // Border width
+                      // decoration: BoxDecoration(
+                      //     color: Color.fromARGB(255, 29, 177, 152),
+                      //     borderRadius: BorderRadius.circular(20)),
+                      child: Column(
+                          //crossAxisAlignment: center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox.fromSize(
+                                  size: Size.fromRadius(88), // Image radius
+                                  child: _image == null
+                                      ? Image.network(widget.currentImageURL,
+                                          fit: BoxFit.cover)
+                                      : Image.file(_image!)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 216, 216, 216),
+                                radius: 20,
+                                child: IconButton(
+                                  icon: Icon(Icons.camera_alt_rounded,
+                                      size: 25,
+                                      color: Color.fromARGB(255, 99, 99, 99)),
+                                  onPressed: () {
+                                    getImage(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
                     ),
                     const Text(
                       'Question',
@@ -204,13 +266,20 @@ class _EditQuizFormState extends State<EditQuizForm> {
                             setState(() {
                               _isProcessing = true;
                             });
+                            if (_image == null) {
+                              imageURL = widget.currentImageURL;
+                            }
+                            else{
+                              await ref.putFile(File(pickedImage!.path));
+                              imageURL = await ref.getDownloadURL();
+                            }
                             await Database.updateQuestion(
                                 docId: widget.documentId,
                                 question : updateQuestion,
                                 answer: updateAnswer,
                                 wrongAnswer: updateWrongAnswer,
                                 description: updateDescription,
-                                imageURL: widget.currentImageURL,);
+                                imageURL:imageURL,);
     
                             setState(() {
                               _isProcessing = false;
