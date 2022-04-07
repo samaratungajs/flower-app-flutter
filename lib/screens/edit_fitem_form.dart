@@ -1,9 +1,13 @@
 // ignore_for_file: empty_constructor_bodies
 
+import 'dart:io';
+
 import 'package:crud_app/custom_form_field.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class EditItemForm extends StatefulWidget {
   final FocusNode titleFocusNode;
@@ -35,6 +39,31 @@ class _EditItemFormState extends State<EditItemForm> {
 
   String updateTitle = "";
   String updateDescription = "";
+  static String imagURL = "";
+
+  static var pickedImage;
+  File? _image;
+
+  //upload image
+  final picker = ImagePicker();
+  Reference ref = FirebaseStorage.instance
+      .ref()
+      .child("category" + DateTime.now().toString());
+
+  Future getImage(BuildContext context) async {
+    pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Image Uploaded")));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("No Image Uploaded")));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +77,41 @@ class _EditItemFormState extends State<EditItemForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 24.0),
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(6), // Border width
+                  // decoration: BoxDecoration(
+                  //     color: Color.fromARGB(255, 29, 177, 152),
+                  //     borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                      //crossAxisAlignment: center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox.fromSize(
+                              size: Size.fromRadius(88), // Image radius
+                              child: _image == null
+                                  ? Image.network(widget.currentImageURL,
+                                      fit: BoxFit.cover)
+                                  : Image.file(_image!)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: CircleAvatar(
+                            backgroundColor: Color.fromARGB(255, 216, 216, 216),
+                            radius: 20,
+                            child: IconButton(
+                              icon: Icon(Icons.camera_alt_rounded,
+                                  size: 25,
+                                  color: Color.fromARGB(255, 99, 99, 99)),
+                              onPressed: () {
+                                getImage(context);
+                              },
+                            ),
+                          ),
+                        ),
+                      ]),
+                ),
                 Text('Flower Name',
                     style: TextStyle(
                         color: Color.fromARGB(255, 9, 75, 103),
@@ -56,7 +120,7 @@ class _EditItemFormState extends State<EditItemForm> {
                         fontWeight: FontWeight.bold)),
                 SizedBox(height: 8.0),
                 CustomFormField(
-                  initialValue: widget.currrentDescription,
+                  initialValue: widget.currentTitle,
                   isLabelEnabled: false,
                   controller: _titleController,
                   focusNode: widget.titleFocusNode,
@@ -119,11 +183,17 @@ class _EditItemFormState extends State<EditItemForm> {
                         setState(() {
                           _isProcessing = true;
                         });
+                        if (_image == null) {
+                          imagURL = widget.currentImageURL;
+                        } else {
+                          await ref.putFile(File(pickedImage!.path));
+                          imagURL = await ref.getDownloadURL();
+                        }
 
                         await Database.updateFlowerItem(
                             docId: widget.documentId,
                             title: updateTitle,
-                            imageURL: widget.currentImageURL,
+                            imageURL: imagURL,
                             description: updateDescription);
 
                         setState(() {
