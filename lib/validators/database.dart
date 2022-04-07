@@ -294,4 +294,84 @@ class Database {
         .catchError((e) => print(e));
   }
 
+
+
+  //Flowers
+  //add flower details
+  static Future<void> addFlowerItem(
+      {required String title,
+      required String description,
+      required String imageURL}) async {
+    DocumentReference documentReference =
+        _mainCollection.doc(userId).collection('flower').doc();
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "title": title,
+      "description": description,
+      "imageURL": imageURL
+    };
+
+    await documentReference
+        .set(data)
+        .whenComplete(() => print("Note flower items inserted to the database"))
+        .catchError((e) => print(e));
+  }
+
+//update flower items
+  static Future<void> updateFlowerItem(
+      {required String title,
+      required String description,
+      required String docId,
+      required String imageURL}) async {
+    DocumentReference documentReference =
+        _mainCollection.doc(userId).collection('flower').doc(docId);
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "title": title,
+      "description": description,
+      "imageURL": imageURL,
+    };
+
+    await documentReference
+        .set(data)
+        .whenComplete(() => print("Note flower items updated to the database"))
+        .catchError((e) => print(e));
+  }
+
+//Display all flower items
+  static Stream<QuerySnapshot> readFlowerItems(String? keyword) {
+    if (keyword != "" && keyword != null) {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection
+          .where("title", isGreaterThanOrEqualTo: keyword)
+          .where("title", isLessThanOrEqualTo: keyword + 'z')
+          .snapshots();
+    } else {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection.snapshots();
+    }
+  }
+
+  static Future<void> deleteFlowerItems({
+    required String docId,
+  }) async {
+    DocumentReference documentReference =
+        _mainCollection.doc(userId).collection('flower').doc(docId);
+
+    await documentReference
+        .delete()
+        .whenComplete(() => print("Note item delete fromm the database"))
+        .catchError((e) => print(e));
+  }
+
+  //Display all flower items to users
+  static Stream<QuerySnapshot> readFlowerUserItems() {
+    CollectionReference notesItemCollection =
+        _mainCollection.doc(userId).collection('flower');
+
+    return notesItemCollection.snapshots();
+  }
+
 }

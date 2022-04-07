@@ -144,4 +144,20 @@ class Database {
   }
 
 
+
+// Flowers
+static Stream<QuerySnapshot> readFlowerItems(String? keyword) {
+    if (keyword != "" && keyword != null) {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection
+          .where("title", isGreaterThanOrEqualTo: keyword)
+          .where("title", isLessThanOrEqualTo: keyword + 'z')
+          .snapshots();
+    } else {
+      CollectionReference notesItemscollection =
+          _mainCollection.doc(userId).collection('flower');
+      return notesItemscollection.snapshots();
+    }
+  }
 }
