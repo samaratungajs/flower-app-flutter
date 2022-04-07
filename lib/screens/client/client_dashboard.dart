@@ -69,7 +69,7 @@ class ClientDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.chat_bubble_outline_rounded, size: 50, color: Color.fromARGB(148, 31, 196, 155),),
-                    Text("Test", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
+                    Text("Q & A", style: TextStyle(color: Color.fromARGB(148, 31, 196, 155), fontSize:25,fontWeight: FontWeight.bold,)
                     ),
                   ],
                 ),
