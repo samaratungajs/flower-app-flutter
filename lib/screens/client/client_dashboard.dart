@@ -1,5 +1,7 @@
 import 'package:crud_app/screens/admin/category/admin_home.dart';
 import 'package:crud_app/screens/admin/category/app_bar.dart';
+import 'package:crud_app/screens/admin/quiz/quiz_home.dart';
+import 'package:crud_app/screens/admin/quiz/quiz_screen.dart';
 import 'package:crud_app/screens/client/categories/category_list.dart';
 import 'package:flutter/material.dart';
 
@@ -76,8 +78,8 @@ class ClientDashboard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              // onTap: () => Navigator.of(context)
-              //   .push(MaterialPageRoute(builder: (context) => AdminHome())),
+              onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => QuizScreen())),
               child: Container(
                 decoration: BoxDecoration(border:Border.all(width: 3.0,color: Color.fromARGB(148, 31, 196, 155)), borderRadius: BorderRadius.circular(20), color: Colors.white),
                 child: Column(

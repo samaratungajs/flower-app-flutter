@@ -1,5 +1,6 @@
 import 'package:crud_app/screens/admin/category/admin_home.dart';
 import 'package:crud_app/screens/admin/category/app_bar.dart';
+import 'package:crud_app/screens/admin/quiz/quiz_home.dart';
 import 'package:flutter/material.dart';
 
 class Admindahboard extends StatelessWidget {
@@ -108,8 +109,8 @@ class Admindahboard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              // onTap: () => Navigator.of(context)
-              //   .push(MaterialPageRoute(builder: (context) => AdminHome())),
+               onTap: () => Navigator.of(context)
+                 .push(MaterialPageRoute(builder: (context) => QuizHome())),
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(
