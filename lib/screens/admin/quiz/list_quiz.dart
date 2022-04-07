@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crud_app/screens/edit_quiz_screen.dart';
-import 'package:crud_app/screens/view_question_screen.dart';
+import 'package:crud_app/screens/admin/quiz/edit_quiz_screen.dart';
+import 'package:crud_app/screens/admin/quiz/view_question_screen.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

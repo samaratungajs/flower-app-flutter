@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../custom_form_field.dart';
-import '../validators/database.dart';
-import '../validators/validator.dart';
+import 'package:crud_app/validators/validator.dart';
+import 'package:crud_app/validators/database.dart';
+import 'package:crud_app/custom_form_field.dart';
 
 class EditQuizForm extends StatefulWidget {
   final String documentId;

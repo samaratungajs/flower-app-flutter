@@ -1,4 +1,4 @@
-import 'package:crud_app/screens/add_quiz_form.dart';
+import 'package:crud_app/screens/admin/quiz/add_quiz_form.dart';
 import 'package:crud_app/screens/app_bar.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crud_app/screens/client/quiz_screen.dart';
 import 'package:crud_app/screens/admin_home.dart';
 import 'package:crud_app/screens/home.dart';
 import 'package:crud_app/validators/database.dart';
@@ -7,7 +8,7 @@ import 'package:crud_app/validators/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:crud_app/custom_form_field.dart';
 
-import 'package:crud_app/screens/quiz_home.dart';
+import 'package:crud_app/screens/admin/quiz/quiz_home.dart';
 
 class LoginForm extends StatefulWidget {
   final FocusNode focusNode;
@@ -71,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => QuizHome(),
+                          builder: (context) => QuizScreen(),
                         ),
                       );
                     }

@@ -144,6 +144,13 @@ class Database {
     }
   }
 
+  ////view questions
+  static Stream<QuerySnapshot> viewQuestions() {
+      CollectionReference quizQuestionscollection =
+          _mainCollection.doc('qwer1234').collection('quiz');
+      return quizQuestionscollection.snapshots();
+  }
+
   /////Delete question
   static Future<void> deleteQuestion({
     required String docId,

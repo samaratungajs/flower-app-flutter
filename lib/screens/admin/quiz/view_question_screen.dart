@@ -1,5 +1,5 @@
 import 'package:crud_app/screens/app_bar.dart';
-import 'package:crud_app/screens/edit_quiz_form.dart';
+import 'package:crud_app/screens/admin/quiz/edit_quiz_form.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
