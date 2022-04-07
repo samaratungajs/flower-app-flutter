@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuestionList extends StatelessWidget {
-  QuestionList(this.keyword);
+  // QuestionList(this.keyword);
 
-  final String? keyword;
+  final String? keyword = "";
   bool _isShown = true;
+
+  QuestionList(String name);
 
   @override
   Widget build(BuildContext context) {
