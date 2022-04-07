@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:crud_app/custom_form_field.dart';
 import 'package:crud_app/validators/database.dart';
 import 'package:crud_app/validators/validator.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditItemForm extends StatefulWidget {
   final String documentId;
@@ -40,6 +43,31 @@ class _EditItemFormState extends State<EditItemForm> {
   String updateTitle = "";
   String updateDescription = "";
   String updateOrigin = "";
+  static String imageURL = "";
+
+  static var pickedImage;
+  File? _image;
+
+  //upload image
+  final picker = ImagePicker();
+  Reference ref = FirebaseStorage.instance
+      .ref()
+      .child("category" + DateTime.now().toString());
+
+  Future getImage(BuildContext context) async {
+    pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Image Uploaded")));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("No Image Uploaded")));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +84,42 @@ class _EditItemFormState extends State<EditItemForm> {
                     const SizedBox(
                       height: 24.0,
                     ),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(6), // Border width
+                      // decoration: BoxDecoration(
+                      //     color: Color.fromARGB(255, 29, 177, 152),
+                      //     borderRadius: BorderRadius.circular(20)),
+                      child: Column(
+                          //crossAxisAlignment: center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox.fromSize(
+                                  size: Size.fromRadius(88), // Image radius
+                                  child: _image == null
+                                      ? Image.network(widget.currentImageURL,
+                                          fit: BoxFit.cover)
+                                      : Image.file(_image!)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 216, 216, 216),
+                                radius: 20,
+                                child: IconButton(
+                                  icon: Icon(Icons.camera_alt_rounded,
+                                      size: 25,
+                                      color: Color.fromARGB(255, 99, 99, 99)),
+                                  onPressed: () {
+                                    getImage(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                    ),
                     const Text(
                       'Categry',
                       style: TextStyle(
@@ -68,7 +132,7 @@ class _EditItemFormState extends State<EditItemForm> {
                       height: 8.0,
                     ),
                     CustomFormField(
-                      initialValue: widget.currentTitle,
+                        initialValue: widget.currentTitle,
                         isLabelEnabled: false,
                         controller: _titleController,
                         focusNode: widget.titleFocusNode,
@@ -83,7 +147,6 @@ class _EditItemFormState extends State<EditItemForm> {
                           updateTitle = value;
                         }),
                     const SizedBox(height: 24.0),
-
                     const Text(
                       'Origin',
                       style: TextStyle(
@@ -96,7 +159,7 @@ class _EditItemFormState extends State<EditItemForm> {
                       height: 8.0,
                     ),
                     CustomFormField(
-                      initialValue: widget.currentOrigin,
+                        initialValue: widget.currentOrigin,
                         isLabelEnabled: false,
                         controller: _originContoller,
                         focusNode: widget.titleFocusNode,
@@ -110,7 +173,6 @@ class _EditItemFormState extends State<EditItemForm> {
                           );
                           updateOrigin = value;
                         }),
-
                     const SizedBox(height: 24.0),
                     const Text(
                       'Description',
@@ -146,34 +208,41 @@ class _EditItemFormState extends State<EditItemForm> {
                   ? Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 29, 177, 152)),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Color.fromARGB(255, 29, 177, 152)),
                       ),
                     )
                   : Container(
                       width: double.maxFinite,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Color.fromARGB(255, 14, 204, 172)),
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 14, 204, 172)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)))),
                         onPressed: () async {
                           widget.titleFocusNode.unfocus();
                           widget.descriptionFocusNode.unfocus();
-    
+
                           if (_addItemFormKey.currentState!.validate()) {
                             setState(() {
                               _isProcessing = true;
                             });
+                            if (_image == null) {
+                              imageURL = widget.currentImageURL;
+                            }
+                            else{
+                              await ref.putFile(File(pickedImage!.path));
+                              imageURL = await ref.getDownloadURL();
+                            }
                             await Database.updatedItem(
                                 docId: widget.documentId,
                                 title: updateTitle,
                                 origin: updateOrigin,
-                              imageURL: widget.currentImageURL,
+                                imageURL: imageURL,
                                 description: updateDescription);
-    
+
                             setState(() {
                               _isProcessing = false;
                             });
