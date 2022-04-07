@@ -18,7 +18,7 @@ class CustomFormField extends StatelessWidget {
   })  : _keyboardType = keyboardType,
         _inputAction = inputAction,
         _label = label,
-        _initialValue=initialValue,
+        _initialValue = initialValue,
         _hint = hint,
         _validator = validator,
         super(key: key);
@@ -37,7 +37,8 @@ class CustomFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: Color.fromARGB(255, 34, 34, 34), fontWeight: FontWeight.w600),
+      style: TextStyle(
+          color: Color.fromARGB(255, 34, 34, 34), fontWeight: FontWeight.w600),
       initialValue: _initialValue,
       maxLines: maxLines,
       keyboardType: _keyboardType,
@@ -58,7 +59,8 @@ class CustomFormField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(color: Color.fromARGB(255, 29, 177, 152), width: 2)),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 29, 177, 152), width: 2)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(35.0),
           borderSide: BorderSide(color: Colors.blueGrey),
@@ -70,9 +72,7 @@ class CustomFormField extends StatelessWidget {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide:
-              BorderSide(
-                color: Color.fromARGB(255, 240, 0, 12), width: 2
-                ),
+              BorderSide(color: Color.fromARGB(255, 240, 0, 12), width: 2),
         ),
       ),
     );

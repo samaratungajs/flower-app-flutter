@@ -25,18 +25,7 @@ class _CategoriesState extends State<Categories> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddScreen()));
-          },
-          backgroundColor: Color.fromARGB(255, 29, 177, 152),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 32,
-          ),
-        ),
+        
         body: Scaffold(
           body: SingleChildScrollView(
             child: Container(

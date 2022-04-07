@@ -20,7 +20,7 @@ class Database {
       "title": title,
       "description": description,
       "imageURL": imageURL,
-      "origin": origin,
+      "origin": origin,          
     };
 
     await documentReference

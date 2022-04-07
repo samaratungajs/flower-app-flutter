@@ -10,12 +10,12 @@ import 'package:image_picker/image_picker.dart';
 class AddItemFormm extends StatefulWidget {
   final FocusNode titleFocusNode;
   final FocusNode descriptionFocusNode;
-  final FocusNode  originFocusNode;
+  final FocusNode originFocusNode;
 
   const AddItemFormm({
     required this.titleFocusNode,
     required this.descriptionFocusNode,
-    required this. originFocusNode,
+    required this.originFocusNode,
   });
 
   @override
@@ -139,7 +139,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           getTitle = value;
                         }),
                     const SizedBox(height: 24.0),
-                     const Text(
+                    const Text(
                       'Origin',
                       style: TextStyle(
                           color: Color.fromARGB(255, 29, 177, 152),
@@ -165,7 +165,7 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           );
                           getOrigin = value;
                         }),
-                        const SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     const Text(
                       'Description',
                       style: TextStyle(
@@ -193,8 +193,6 @@ class _AddItemFormmState extends State<AddItemFormm> {
                           );
                           getDescription = value;
                         }),
-
-                       
                   ],
                 ),
               ),
