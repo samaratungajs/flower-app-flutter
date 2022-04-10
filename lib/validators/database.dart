@@ -157,7 +157,7 @@ class Database {
   ////view questions
   static Stream<QuerySnapshot> viewQuestions() {
       CollectionReference quizQuestionscollection =
-          _mainCollection.doc('qwer1234').collection('quiz');
+          _mainCollection.doc('admin').collection('quiz');
       return quizQuestionscollection.snapshots();
   }
 

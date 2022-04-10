@@ -1,7 +1,7 @@
 import 'package:crud_app/screens/admin/category/admin_home.dart';
 import 'package:crud_app/screens/admin/category/app_bar.dart';
 import 'package:crud_app/screens/admin/quiz/quiz_home.dart';
-import 'package:crud_app/screens/admin/quiz/quiz_screen.dart';
+import 'package:crud_app/screens/client/quiz/quiz_screen.dart';
 import 'package:crud_app/screens/client/categories/category_list.dart';
 import 'package:crud_app/screens/client/flowers/user_fhome.dart';
 import 'package:crud_app/screens/client/q&a_forum/qa_home.dart';
